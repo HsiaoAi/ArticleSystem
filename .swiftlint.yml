@@ -6,7 +6,7 @@ disabled_rules:
 - large_tuple
 
 excluded:
-    - Pods
+    - Pods/
 
 identifier_name:
     excluded:

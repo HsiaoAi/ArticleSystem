@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class LandingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor(gradientStyle: .topToBottom, withFrame: self.view.frame, andColors: [UIColor.flatTeal, UIColor.flatNavyBlue])
     }
 
 }
