@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
         return view
     }()
 
-    lazy var loginRegisterButton: UIButton = {
+    lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor.flatBlue
         button.layer.cornerRadius = 5
@@ -31,14 +31,14 @@ class LoginViewController: UIViewController {
         return button
     }()
 
-    lazy var emailForLoginTextField: UITextField = {
+    lazy var emailTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = TextFieldPlaceholder.email.rawValue
         tf.delegate = self
         return tf
     }()
 
-    lazy var passwordForLoginTextField: UITextField = {
+    lazy var passwordTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = TextFieldPlaceholder.password.rawValue
         tf.delegate = self
@@ -57,23 +57,17 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.clear
         view.addSubview(loginContainerView)
-        view.addSubview(loginRegisterButton)
-        loginContainerView.addSubview(emailForLoginTextField)
+        view.addSubview(loginButton)
+        loginContainerView.addSubview(emailTextField)
         loginContainerView.addSubview(seperatorView)
-        loginContainerView.addSubview(passwordForLoginTextField)
+        loginContainerView.addSubview(passwordTextField)
 
     }
 
     override func viewWillLayoutSubviews() {
         setupLoginContainerViewLayout()
-        setupLoginRegisterButtonLayout()
+        setuploginButtonLayout()
     }
-
-    // Change status bar color to white
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
 }
 
 // Auto Layout functions
@@ -86,33 +80,33 @@ extension LoginViewController {
         loginContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
 
         // EmailTextField
-        emailForLoginTextField.translatesAutoresizingMaskIntoConstraints = false
-        emailForLoginTextField.leftAnchor.constraint(equalTo: loginContainerView.leftAnchor, constant: 12).isActive = true
-        emailForLoginTextField.topAnchor.constraint(equalTo: loginContainerView.topAnchor).isActive = true
-        emailForLoginTextField.widthAnchor.constraint(equalTo: loginContainerView.widthAnchor).isActive = true
-        emailForLoginTextField.heightAnchor.constraint(equalTo: loginContainerView.heightAnchor, multiplier: 0.5).isActive = true
+        emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        emailTextField.leftAnchor.constraint(equalTo: loginContainerView.leftAnchor, constant: 12).isActive = true
+        emailTextField.topAnchor.constraint(equalTo: loginContainerView.topAnchor).isActive = true
+        emailTextField.widthAnchor.constraint(equalTo: loginContainerView.widthAnchor).isActive = true
+        emailTextField.heightAnchor.constraint(equalTo: loginContainerView.heightAnchor, multiplier: 0.5).isActive = true
 
         // seperatorView
         seperatorView.translatesAutoresizingMaskIntoConstraints = false
         seperatorView.leftAnchor.constraint(equalTo: loginContainerView.leftAnchor).isActive = true
-        seperatorView.topAnchor.constraint(equalTo: emailForLoginTextField.bottomAnchor).isActive = true
+        seperatorView.topAnchor.constraint(equalTo: emailTextField.bottomAnchor).isActive = true
         seperatorView.widthAnchor.constraint(equalTo: loginContainerView.widthAnchor).isActive = true
         seperatorView.heightAnchor.constraint(equalToConstant: 2).isActive = true
 
-        // PasswordForLoginTextField
-        passwordForLoginTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordForLoginTextField.leftAnchor.constraint(equalTo: loginContainerView.leftAnchor, constant: 12).isActive = true
-        passwordForLoginTextField.topAnchor.constraint(equalTo: seperatorView.topAnchor).isActive = true
-        passwordForLoginTextField.widthAnchor.constraint(equalTo: loginContainerView.widthAnchor).isActive = true
-        passwordForLoginTextField.bottomAnchor.constraint(equalTo: loginContainerView.bottomAnchor).isActive = true
+        // passwordTextField
+        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.leftAnchor.constraint(equalTo: loginContainerView.leftAnchor, constant: 12).isActive = true
+        passwordTextField.topAnchor.constraint(equalTo: seperatorView.topAnchor).isActive = true
+        passwordTextField.widthAnchor.constraint(equalTo: loginContainerView.widthAnchor).isActive = true
+        passwordTextField.bottomAnchor.constraint(equalTo: loginContainerView.bottomAnchor).isActive = true
     }
 
-    func setupLoginRegisterButtonLayout() {
-        loginRegisterButton.translatesAutoresizingMaskIntoConstraints = false
-        loginRegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loginRegisterButton.topAnchor.constraint(equalTo: loginContainerView.bottomAnchor, constant: 12).isActive = true
-        loginRegisterButton.widthAnchor.constraint(equalTo: loginContainerView.widthAnchor).isActive = true
-        loginRegisterButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.15).isActive = true
+    func setuploginButtonLayout() {
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loginButton.topAnchor.constraint(equalTo: loginContainerView.bottomAnchor, constant: 12).isActive = true
+        loginButton.widthAnchor.constraint(equalTo: loginContainerView.widthAnchor).isActive = true
+        loginButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.15).isActive = true
     }
 }
 
@@ -121,14 +115,4 @@ extension LoginViewController: UITextFieldDelegate {
         self.view.endEditing(true)
         return true
     }
-}
-
-enum LandingButton: String {
-    case register = "Register"
-    case login = "Login"
-}
-
-enum TextFieldPlaceholder: String {
-    case email = "Email Address"
-    case password = "Password"
 }

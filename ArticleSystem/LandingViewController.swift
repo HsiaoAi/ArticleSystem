@@ -12,7 +12,7 @@ import ChameleonFramework
 class LandingViewController: UIViewController {
 
     lazy var containerViewController: UIViewController = {
-        let viewController = LoginViewController()
+        let viewController = SignupViewController()
         return viewController
     }()
 
