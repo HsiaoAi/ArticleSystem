@@ -17,7 +17,8 @@ class ArticlesTableViewController: UITableViewController {
 }
 extension ArticlesTableViewController {
     @objc func handleLogout() {
-
+        let landingController = LandingViewController()
+        present(landingController, animated: true, completion: nil)
     }
 }
 extension Selector {

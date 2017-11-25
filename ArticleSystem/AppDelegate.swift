@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
 
-        window?.rootViewController = UINavigationController(rootViewController: LandingViewController())
+        window?.rootViewController = UINavigationController(rootViewController: ArticlesTableViewController())
         return true
     }
 
