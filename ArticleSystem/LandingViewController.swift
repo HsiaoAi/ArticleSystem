@@ -39,7 +39,7 @@ class LandingViewController: UIViewController {
     // ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(gradientStyle: .radial, withFrame: self.view.frame, andColors: [UIColor.flatSkyBlue, UIColor.flatBlue])
+        view.backgroundColor = UIColor(gradientStyle: .diagonal, withFrame: self.view.frame, andColors: [UIColor.flatSkyBlue, UIColor.flatBlue])
         self.hideKeyboardWhenTappedAround()
 
         self.view.addSubview(loginContainerViewController.view)
