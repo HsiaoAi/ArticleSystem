@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
 
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.flatBlue
+        button.backgroundColor = UIColor.Customs.kiwi
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         button.setTitleColor(UIColor.white, for: .normal)
@@ -33,6 +33,7 @@ class LoginViewController: UIViewController {
 
     lazy var emailTextField: UITextField = {
         let tf = UITextField()
+        tf.autocapitalizationType = .none
         tf.placeholder = TextFieldPlaceholder.email.rawValue
         tf.delegate = self
         return tf
@@ -41,6 +42,7 @@ class LoginViewController: UIViewController {
     lazy var passwordTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = TextFieldPlaceholder.password.rawValue
+        tf.autocapitalizationType = .none
         tf.delegate = self
         tf.isSecureTextEntry = true
         return tf
@@ -55,6 +57,7 @@ class LoginViewController: UIViewController {
     // ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = UIColor.clear
         view.addSubview(loginContainerView)
         view.addSubview(loginButton)

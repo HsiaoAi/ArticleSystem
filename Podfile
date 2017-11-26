@@ -7,5 +7,7 @@ target 'ArticleSystem' do
 
   # Pods for ArticleSystem
     pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
-    pod 'Firebase/Core'
+    pod 'Firebase/Database'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Storage'
 end

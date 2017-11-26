@@ -29,7 +29,7 @@ class LandingViewController: UIViewController {
         control.layer.borderColor = UIColor.white.cgColor
         control.layer.borderWidth = 2
         control.backgroundColor = UIColor.flatWhite
-        control.tintColor = UIColor.flatBlue
+        control.tintColor = UIColor.Customs.kiwi
 
         control.addTarget(self, action: .switchContainerView, for: .valueChanged)
 
@@ -39,7 +39,7 @@ class LandingViewController: UIViewController {
     // ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(gradientStyle: .diagonal, withFrame: self.view.frame, andColors: [UIColor.flatSkyBlue, UIColor.flatBlue])
+        view.backgroundColor = UIColor(gradientStyle: .topToBottom, withFrame: self.view.frame, andColors: [UIColor.Customs.kiwi, UIColor.flatSkyBlue])
         self.hideKeyboardWhenTappedAround()
 
         self.view.addSubview(loginContainerViewController.view)
@@ -102,12 +102,6 @@ extension LandingViewController {
             self.loginContainerViewController.view.alpha = 0
             self.signupContainerViewController.view.alpha = 1
         }
-    }
-}
-
-extension UIColor {
-        class func greyPlaceholderColor() -> UIColor {
-        return UIColor(red: 0.78, green: 0.78, blue: 0.80, alpha: 1.0)
     }
 }
 
