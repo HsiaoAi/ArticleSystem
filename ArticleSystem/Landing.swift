@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum LandingButton: String {
     case register = "Register"
@@ -18,4 +19,16 @@ enum TextFieldPlaceholder: String {
     case password = "Password"
     case firstName = "First Name"
     case lastName = "Last Name"
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tapToHideKeyboard: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tapToHideKeyboard.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapToHideKeyboard)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
