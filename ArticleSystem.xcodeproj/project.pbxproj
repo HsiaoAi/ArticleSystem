@@ -14,6 +14,7 @@
 		873430C41FC9B6C000BEBACE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873430C21FC9B6C000BEBACE /* Main.storyboard */; };
 		873430C61FC9B6C000BEBACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 873430C51FC9B6C000BEBACE /* Assets.xcassets */; };
 		873430C91FC9B6C000BEBACE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873430C71FC9B6C000BEBACE /* LaunchScreen.storyboard */; };
+		8785CD581FCADC9100405DF3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8785CD571FCADC9100405DF3 /* GoogleService-Info.plist */; };
 		87C884FB1FC9F2E6007B0EBC /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C884FA1FC9F2E6007B0EBC /* SignupViewController.swift */; };
 		87C884FD1FC9F30E007B0EBC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C884FC1FC9F30E007B0EBC /* LoginViewController.swift */; };
 		87C884FF1FC9FFB9007B0EBC /* Landing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C884FE1FC9FFB9007B0EBC /* Landing.swift */; };
@@ -31,6 +32,7 @@
 		873430C51FC9B6C000BEBACE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		873430C81FC9B6C000BEBACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873430CA1FC9B6C000BEBACE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8785CD571FCADC9100405DF3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		87C884FA1FC9F2E6007B0EBC /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		87C884FC1FC9F30E007B0EBC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		87C884FE1FC9FFB9007B0EBC /* Landing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landing.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				87C884FA1FC9F2E6007B0EBC /* SignupViewController.swift */,
 				87C884FC1FC9F30E007B0EBC /* LoginViewController.swift */,
 				87C884FE1FC9FFB9007B0EBC /* Landing.swift */,
+				8785CD571FCADC9100405DF3 /* GoogleService-Info.plist */,
 			);
 			path = ArticleSystem;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				873430C91FC9B6C000BEBACE /* LaunchScreen.storyboard in Resources */,
+				8785CD581FCADC9100405DF3 /* GoogleService-Info.plist in Resources */,
 				873430C61FC9B6C000BEBACE /* Assets.xcassets in Resources */,
 				873430C41FC9B6C000BEBACE /* Main.storyboard in Resources */,
 			);

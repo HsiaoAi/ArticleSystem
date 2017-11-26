@@ -26,7 +26,7 @@ class LandingViewController: UIViewController {
         let control = UISegmentedControl(items: items)
         control.selectedSegmentIndex = 0
         control.layer.cornerRadius = 5.0
-        control.layer.borderColor = UIColor.flatGray.cgColor
+        control.layer.borderColor = UIColor.white.cgColor
         control.layer.borderWidth = 2
         control.backgroundColor = UIColor.flatWhite
         control.tintColor = UIColor.flatBlue
@@ -39,7 +39,7 @@ class LandingViewController: UIViewController {
     // ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(gradientStyle: .topToBottom, withFrame: self.view.frame, andColors: [UIColor.flatTeal, UIColor.flatNavyBlue])
+        view.backgroundColor = UIColor(gradientStyle: .radial, withFrame: self.view.frame, andColors: [UIColor.flatSkyBlue, UIColor.flatBlue])
         self.hideKeyboardWhenTappedAround()
 
         self.view.addSubview(loginContainerViewController.view)
