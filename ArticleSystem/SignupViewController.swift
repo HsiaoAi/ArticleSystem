@@ -130,7 +130,7 @@ extension SignupViewController {
                 let usersReference = ref.child("users").child(uid)
                 let values: [String: Any] = ["firstName": firstName,
                              "lastName": lastName,
-                             "emai": email]
+                             "email": email]
                 usersReference.updateChildValues(values, withCompletionBlock: { (error, _)
                     in
                     if let error = error {

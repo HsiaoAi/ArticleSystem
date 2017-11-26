@@ -8,6 +8,7 @@
 
 import UIKit
 import ChameleonFramework
+import Firebase
 
 class PostViewController: UIViewController {
 
@@ -39,14 +40,18 @@ class PostViewController: UIViewController {
         return tf
     }()
 
+    var authorName: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.white
         setupSubviews()
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
+
+        getAuthorName()
     }
 
     override func viewWillLayoutSubviews() {
@@ -55,12 +60,53 @@ class PostViewController: UIViewController {
 
 }
 extension PostViewController: UITextFieldDelegate {
-
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
 }
 
 extension PostViewController {
-    @objc func handleSave() {
+    func getAuthorName() {
+        let uid = Auth.auth().currentUser?.uid
+        Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapShot) in
+            guard let dictionary = snapShot.value as? [String: AnyObject] else { return }
+            guard let authorFirstName = dictionary["firstName"] as? String else { return }
+            guard let authorLasttName = dictionary["lastName"] as? String else { return }
+            self.authorName = "\(authorFirstName) \(authorLasttName)"
+        })
     }
+
+    func getPostDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        let dateString = dateFormatter.string(from: Date())
+        return dateString
+    }
+    @objc func handleSave() {
+        guard let title = titleTextField.text else { print(PostError.emptyTitle); return }
+        guard let content = contentTextField.text else { print(PostError.emptyContent); return }
+        guard let authorName = self.authorName else { return }
+        let date = getPostDate()
+
+        let databaseURL: String = "https://articlesystem-c457c.firebaseio.com/"
+        let ref = Database.database().reference(fromURL: databaseURL)
+        let usersReference = ref.child("articles").childByAutoId()
+        let values: [String: Any] = ["title": title,
+                                     "content": content,
+                                     "authorName": authorName,
+                                     "date": date]
+
+        usersReference.updateChildValues(values, withCompletionBlock: { (error, _) in
+            if let error = error {
+                print(error)
+                return
+            }
+            self.navigationController?.popViewController(animated: true)
+        })
+
+    }
+
     @objc func handleCancel() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -84,4 +130,9 @@ extension PostViewController {
         contentTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85).isActive = true
         contentTextField.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
     }
+}
+
+enum PostError: Error {
+    case emptyTitle
+    case emptyContent
 }
