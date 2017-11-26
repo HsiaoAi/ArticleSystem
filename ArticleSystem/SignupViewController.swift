@@ -96,11 +96,6 @@ class SignupViewController: UIViewController {
 
         // Setup subViews
         setupSubviews()
-
-        // Firebase Database
-//        let databaseURL: String = "https://articlesystem-c457c.firebaseio.com/"
-//        let ref = Database.database().reference(fromURL: databaseURL)
-
     }
 
     override func viewWillLayoutSubviews() {

@@ -12,6 +12,13 @@ import ChameleonFramework
 class LoginViewController: UIViewController {
 
     // MARK: Properties
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.activityIndicatorViewStyle = .whiteLarge
+        indicator.color = UIColor.Customs.kiwi
+        return indicator
+    }()
+    
     lazy var loginContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
@@ -59,11 +66,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.clear
-        view.addSubview(loginContainerView)
-        view.addSubview(loginButton)
-        loginContainerView.addSubview(emailTextField)
-        loginContainerView.addSubview(seperatorView)
-        loginContainerView.addSubview(passwordTextField)
+        setupSubviews()
+        
 
     }
 
@@ -73,8 +77,17 @@ class LoginViewController: UIViewController {
     }
 }
 
-// Auto Layout functions
+// Set up UI functions
 extension LoginViewController {
+    func setupSubviews() {
+        view.addSubview(loginContainerView)
+        view.addSubview(loginButton)
+        loginContainerView.addSubview(emailTextField)
+        loginContainerView.addSubview(seperatorView)
+        loginContainerView.addSubview(passwordTextField)
+        loginContainerView.addSubview(activityIndicator)
+        loginContainerView.bringSubview(toFront: activityIndicator)
+    }
     func setupLoginContainerViewLayout() {
         loginContainerView.translatesAutoresizingMaskIntoConstraints = false
         loginContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -102,6 +115,13 @@ extension LoginViewController {
         passwordTextField.topAnchor.constraint(equalTo: seperatorView.topAnchor).isActive = true
         passwordTextField.widthAnchor.constraint(equalTo: loginContainerView.widthAnchor).isActive = true
         passwordTextField.bottomAnchor.constraint(equalTo: loginContainerView.bottomAnchor).isActive = true
+        
+        // Activity Indicator
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.centerXAnchor.constraint(equalTo: loginContainerView.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: loginContainerView.centerYAnchor).isActive = true
+        activityIndicator.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        activityIndicator.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 
     func setuploginButtonLayout() {
