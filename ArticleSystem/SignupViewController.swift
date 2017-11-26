@@ -112,7 +112,6 @@ extension SignupViewController {
         guard let email = emailTextField.text else { print(SignUpError.emptyEmail); return }
         guard email.contains("@") else { print(SignUpError.invalidEmail); return }
         guard let password = passwordTextField.text else { print(SignUpError.emptyPassword); return }
-        print(password.characters.count)
         guard password.characters.count > 5 else { print(SignUpError.invalidPassword); return }
 
         self.activityIndicator.startAnimating()

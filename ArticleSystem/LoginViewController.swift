@@ -8,6 +8,7 @@
 
 import UIKit
 import ChameleonFramework
+import Firebase
 
 class LoginViewController: UIViewController {
 
@@ -18,7 +19,7 @@ class LoginViewController: UIViewController {
         indicator.color = UIColor.Customs.kiwi
         return indicator
     }()
-    
+
     lazy var loginContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
@@ -35,6 +36,7 @@ class LoginViewController: UIViewController {
         button.setTitleColor(UIColor.white, for: .normal)
         button.setTitle(LandingButton.login.rawValue, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
 
@@ -67,7 +69,6 @@ class LoginViewController: UIViewController {
 
         view.backgroundColor = UIColor.clear
         setupSubviews()
-        
 
     }
 
@@ -115,7 +116,7 @@ extension LoginViewController {
         passwordTextField.topAnchor.constraint(equalTo: seperatorView.topAnchor).isActive = true
         passwordTextField.widthAnchor.constraint(equalTo: loginContainerView.widthAnchor).isActive = true
         passwordTextField.bottomAnchor.constraint(equalTo: loginContainerView.bottomAnchor).isActive = true
-        
+
         // Activity Indicator
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.centerXAnchor.constraint(equalTo: loginContainerView.centerXAnchor).isActive = true
@@ -132,10 +133,35 @@ extension LoginViewController {
         loginButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.15).isActive = true
     }
 }
+extension LoginViewController {
+    @objc func handleLogin() {
+        guard let email = emailTextField.text, email.contains("@")
+            else { print (LoginError.invalidEmail); return }
+        guard let password = passwordTextField.text, password.characters.count > 5 else {
+            print(LoginError.invalidPassword); return
+        }
+        self.activityIndicator.startAnimating()
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (_, error) in
+
+            if let error = error {
+                print("Login error: \(error)")
+                return
+            }
+            self.activityIndicator.stopAnimating()
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            appDelegate.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        })
+    }
+}
 
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
     }
+}
+
+enum LoginError: Error {
+    case invalidEmail
+    case invalidPassword
 }
