@@ -41,6 +41,7 @@ class PostViewController: UIViewController {
     }()
 
     var authorName: String?
+    var authorID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +74,10 @@ extension PostViewController {
             guard let dictionary = snapShot.value as? [String: AnyObject] else { return }
             guard let authorFirstName = dictionary["firstName"] as? String else { return }
             guard let authorLasttName = dictionary["lastName"] as? String else { return }
+            guard let authorID = snapShot.key as? String else { return }
+            self.authorID = authorID
             self.authorName = "\(authorFirstName) \(authorLasttName)"
+
         })
     }
 
@@ -83,23 +87,27 @@ extension PostViewController {
         let dateString = dateFormatter.string(from: Date())
         return dateString
     }
+
     @objc func handleSave() {
         guard let title = titleTextField.text else { print(PostError.emptyTitle); return }
         guard let content = contentTextField.text else { print(PostError.emptyContent); return }
         guard let authorName = self.authorName else { return }
+        guard let authorID = self.authorID else { return }
+
         let date = getPostDate()
 
         let databaseURL: String = "https://articlesystem-c457c.firebaseio.com/"
         let ref = Database.database().reference(fromURL: databaseURL)
-        let usersReference = ref.child("articles").childByAutoId()
+        let articlesReference = ref.child("articles").childByAutoId()
         let values: [String: Any] = ["title": title,
                                      "content": content,
                                      "authorName": authorName,
+                                     "authorID": authorID,
                                      "date": date]
 
-        usersReference.updateChildValues(values, withCompletionBlock: { (error, _) in
+        articlesReference.updateChildValues(values, withCompletionBlock: { (error, _) in
             if let error = error {
-                print(error)
+                print("Error: \(error)")
                 return
             }
             self.navigationController?.popViewController(animated: true)
@@ -135,4 +143,9 @@ extension PostViewController {
 enum PostError: Error {
     case emptyTitle
     case emptyContent
+}
+
+struct Author {
+    var id: String
+    var name: String
 }
